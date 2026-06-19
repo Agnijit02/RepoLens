@@ -1,5 +1,7 @@
 # RepoLens — Deep Code Intelligence 🔍
 
+**🌍 Live Demo:** [https://repo-lens-umber-five.vercel.app/](https://repo-lens-umber-five.vercel.app/)
+
 RepoLens is a powerful, AI-driven repository analysis tool that provides deep architectural insights into any codebase in under a minute. Simply paste a repository URL, and RepoLens will securely clone, analyze, and visualize the structure, business logic, and key files of the project.
 
 ## ✨ Features
