@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Cloned repos (local analysis temp directory)
+.tmp/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build
+dist/
+build/
+
+# Misc
+.DS_Store
+*.pem
+.vercel
