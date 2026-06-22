@@ -17,7 +17,8 @@ async function getGeminiClient() {
     const { GoogleGenAI } = await import('@google/genai')
     geminiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
     return geminiClient
-  } catch {
+  } catch (err) {
+    console.error('[Gemini Init Error]', err)
     return null
   }
 }
@@ -26,10 +27,12 @@ async function getGroqClient() {
   if (!process.env.GROQ_API_KEY) return null
   if (groqClient) return groqClient
   try {
-    const Groq = (await import('groq-sdk')).default
+    const groqModule = await import('groq-sdk')
+    const Groq = groqModule.Groq || groqModule.default
     groqClient = new Groq({ apiKey: process.env.GROQ_API_KEY })
     return groqClient
-  } catch {
+  } catch (err) {
+    console.error('[Groq Init Error]', err)
     return null
   }
 }
