@@ -51,7 +51,7 @@ const WORKFLOW_STEPS = [
   {
     num: '01',
     title: 'Clone',
-    desc: 'Securely clones the repo via simple-git',
+    desc: 'Securely clones the repo via isomorphic-git',
     icon: <GitBranch size={16} />,
   },
   {
@@ -365,7 +365,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
             <span>RepoLens — Deep Code Intelligence</span>
-            <span>simple-git · ts-morph · Gemini AI · Next.js</span>
+            <span>isomorphic-git · ts-morph · Gemini AI · Next.js</span>
           </div>
         </footer>
       </main>

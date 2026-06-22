@@ -1,4 +1,5 @@
-import simpleGit from 'simple-git'
+import * as git from 'isomorphic-git'
+import http from 'isomorphic-git/http/node'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as crypto from 'crypto'
@@ -29,8 +30,13 @@ export async function cloneRepo(
   if (fs.existsSync(dest)) {
     onProgress?.('Repository already cached — pulling latest changes...')
     try {
-      const git = simpleGit(dest)
-      await git.pull()
+      await git.pull({
+        fs,
+        http,
+        dir: dest,
+        author: { name: 'RepoLens', email: 'repolens@example.com' },
+        singleBranch: true
+      })
     } catch {
       // If pull fails (detached HEAD, etc.) just use the existing clone
       onProgress?.('Using existing cached clone.')
@@ -40,11 +46,14 @@ export async function cloneRepo(
 
   onProgress?.(`Cloning ${normalizedUrl}...`)
 
-  const git = simpleGit()
-  await git.clone(normalizedUrl, dest, [
-    '--depth', '1',          // shallow clone — much faster
-    '--single-branch',
-  ])
+  await git.clone({
+    fs,
+    http,
+    dir: dest,
+    url: normalizedUrl,
+    depth: 1,
+    singleBranch: true
+  })
 
   onProgress?.('Clone complete.')
   return dest
